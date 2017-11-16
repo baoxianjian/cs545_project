@@ -16,7 +16,7 @@
   
    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="dataSource" />
-      <property name="packagesToScan" value="edu.mum.domain" />
+      <property name="packagesToScan" value="edu.mum.project.domain" />
       <property name="jpaVendorAdapter">
          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
       </property>
@@ -45,14 +45,14 @@
    </bean>
    
    <!-- Scan for  transaction-based resources -->
-   	<context:component-scan base-package="edu.mum.service,edu.mum.repository" />
+   	<context:component-scan base-package="edu.mum.project.service,edu.mum.project.repository" />
   
     <tx:annotation-driven transaction-manager="transactionManager"/>
  
    <bean id="persistenceExceptionTranslationPostProcessor"
       class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
  
- <jpa:repositories base-package="edu.mum.repository" />
+ <jpa:repositories base-package="edu.mum.project.repository" />
 
  
 </beans>
