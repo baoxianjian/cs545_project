@@ -12,21 +12,9 @@ public class HomeController {
 	@RequestMapping({"/","/welcome"})
 	public String welcome(Model model) {
 		
-		model.addAttribute("greeting", "Welcome to our community, Kimosabe!!");
-		model.addAttribute("tagline", "The one and only place to live, work and play!!");
+		model.addAttribute("greeting", "Welcome to Cuisine-share!!");
+		model.addAttribute("tagline", "Share cuisine from all over the world!");
 		
 		return "welcome";
 	}
-	
-	@ModelAttribute ("homeTestOrder")
-	 public String testOrder() {
-		
-		// test interceptor Order		
-		System.out.println("CONTROLLER @MODELATTRIBUTE PREHANDLE");
-
-		return "This is CONTROLLER ORDER!";
-	}
-
-
- 
 }

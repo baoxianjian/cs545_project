@@ -12,6 +12,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
+				<p><img src="<spring:url value='/resource/image/bun.jpg' />" height="50" width="50"/>  ${userMessage}</p>
 				<h1> ${greeting} </h1>
 				<p> ${tagline} </p>
 				<p> <security:authorize access="isAuthenticated()">
