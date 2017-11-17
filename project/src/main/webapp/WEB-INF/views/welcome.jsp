@@ -12,6 +12,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
+				<p><img src="<spring:url value='/resource/image/bun.jpg' />" height="50" width="50"/>  ${userMessage}</p>
 				<h1> ${greeting} </h1>
 				<p> ${tagline} </p>
 				<p> <security:authorize access="isAuthenticated()">
@@ -26,6 +27,7 @@
 <%--     					<a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a>
   --%>
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
+    					<a href="<spring:url value='/register' />"> Register</a>
 
 				</security:authorize>
 		
@@ -33,7 +35,6 @@
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
 					</a>
 				</div>	
-	 			<div class="pull-left"> <h3>${SpecialBlurb}</h3> </div>
 		</div>	
 	</section>
 	

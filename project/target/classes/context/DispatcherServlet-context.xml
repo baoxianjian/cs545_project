@@ -15,7 +15,7 @@
 
  	<mvc:annotation-driven validator="validator"/>
  
- 	<context:component-scan base-package="edu.mum.controller" />
+ 	<context:component-scan base-package="edu.mum.project.controller" />
  	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
@@ -38,8 +38,8 @@
 	
 	 	<mvc:interceptors>
 		<mvc:interceptor>
-        	<mvc:mapping path="/**"/>
-        	<bean class="mum.edu.interceptor.VolunteerInterceptor" />
+        	<mvc:mapping path="/"/>
+        	<bean class="edu.mum.project.interceptor.RoleInterceptor" />
     	</mvc:interceptor>	 			
 	</mvc:interceptors>
  
