@@ -27,6 +27,7 @@
 <%--     					<a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a>
   --%>
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
+    					<a href="<spring:url value='/register' />"> Register</a>
 
 				</security:authorize>
 		
@@ -34,7 +35,6 @@
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
 					</a>
 				</div>	
-	 			<div class="pull-left"> <h3>${SpecialBlurb}</h3> </div>
 		</div>	
 	</section>
 	
