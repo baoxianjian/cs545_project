@@ -36,7 +36,7 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	
-	 	<mvc:interceptors>
+	 <mvc:interceptors>
 		<mvc:interceptor>
         	<mvc:mapping path="/"/>
         	<bean class="edu.mum.project.interceptor.RoleInterceptor" />
