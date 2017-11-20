@@ -10,7 +10,7 @@
 Title: ${post.title}<br/>
 Content: ${post.content}<br/>
 Type: ${post.type}<br/>
-Image: ${post.image}<br/>
+Image: <img src="${post.imagePath}" alt="image"><br/>
 StartAt: ${post.showTime}<br/>
 MemberLimit: ${post.memberLimit}<br/>
 Location: ${post.location}<br/>

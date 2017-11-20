@@ -30,6 +30,7 @@
 	</bean>
 	
 	<mvc:resources  location="/resources/"  mapping="/resource/**"/>
+
 	
 	<bean id="multipartResolver"  
     	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">  

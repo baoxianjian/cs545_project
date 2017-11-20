@@ -55,34 +55,45 @@ public class PostController {
 	public String add(@Valid @ModelAttribute("post") Post post, BindingResult bindingResult,
 			Model model, HttpServletRequest request) throws ImageCannotUploadException {
 
+		
+		if(bindingResult.hasErrors()) {
+			return "EmployeeForm";
+		}
+
+		String[] suppressedFields = bindingResult.getSuppressedFields();
+		if (suppressedFields.length > 0) {
+			throw new RuntimeException("Attempt to bind fields that haven't been allowed in initBinder(): "
+					+ StringUtils.addStringToArray(suppressedFields, ", "));
+		}
+		
+		MultipartFile image = post.getImage();
+		
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		if (image == null || image.isEmpty() || image.getSize()==0) {
+			
+			throw new ImageCannotUploadException("Image can not be uploaded. 1");
+		}
+		try {
+			System.out.println(image.getName());
+			System.out.println(request.getContextPath());
+			
+			String path = "resources\\uploads\\" + post.getId()+".png";
+			String webPath = request.getContextPath()+"/resource/uploads/" + post.getId()+".png";;
+			String fullPath=rootDirectory + path;
+			image.transferTo(new File(fullPath));
+			
+			post.setImagePath(webPath);
+
+			
+		} catch (Exception e) {
+			throw new ImageCannotUploadException("Image can not be uploaded. 2");//new RuntimeException("Product Image saving failed", e);
+		}
+
+
 		postService.save(post);
 		
-//		if(bindingResult.hasErrors()) {
-//			return "EmployeeForm";
-//		}
-//
-//		String[] suppressedFields = bindingResult.getSuppressedFields();
-//		if (suppressedFields.length > 0) {
-//			throw new RuntimeException("Attempt to bind fields that haven't been allowed in initBinder(): "
-//					+ StringUtils.addStringToArray(suppressedFields, ", "));
-//		}
-//		
-//		MultipartFile image = post.getImage();
-//		
-//		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-//		if (image == null || !image.isEmpty() || image.getSize()==0) {
-//			throw new ImageCannotUploadException("Image can not be uploaded.");
-//		}
-//		try {
-//			String path=rootDirectory + "rwebapp\\WEB-INF\\uploads" + post.getId()+".png";
-//			image.transferTo(new File(path));
-//		} catch (Exception e) {
-//			//e.printStackTrace();
-//			throw new ImageCannotUploadException("Image can not be uploaded.");//new RuntimeException("Product Image saving failed", e);
-//		}
-//
-//		// save product here
-//		model.addAttribute("post", post);
+		// save product here
+		model.addAttribute("post", post);
 
 		return "redirect:list";
 	}
