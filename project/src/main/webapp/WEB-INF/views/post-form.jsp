@@ -24,7 +24,7 @@
 	private String location;
 
 
-<form:form modelAttribute="post" action="add" method="post">
+<form:form modelAttribute="post" action="add" method="post" enctype="multipart/form-data">
 	<div>
 		<label for="title">Title</label>
 		<form:input id="title" path="title" />

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +24,10 @@ public class Post {
 	
 	private String content;
 	
-	@JsonIgnore
-//	private MultipartFile image;
-	private String image;
+	@Transient
+	private MultipartFile image;
+	
+	private String imagePath;
 	
 	
 
@@ -173,13 +175,22 @@ public class Post {
 	};
 	
 	
-	public String getImage() {
+	public MultipartFile getImage() {
 		return image;
 	}
 
 
-	public void setImage(String image) {
+	public void setImage(MultipartFile image) {
 		this.image = image;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 }
