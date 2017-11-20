@@ -47,7 +47,7 @@
 			    			<input type='checkbox' name="keepMe"/><spring:message code="login.rememberme"/><br/>	
 			    		</div>
 			    		<spring:message code="login.submit" var="summit"/>
-			    		<input class="btn btn-lg btn-success btn-mini" type="submit" value="Login" value="${summit}">
+			    		<input class="btn btn-lg btn-success btn-mini" type="submit" value="${summit}">
 			    	</fieldset>
 						<security:csrfInput />
 			      	</form>
