@@ -7,23 +7,6 @@
 <title>Post Detail</title>
 </head>
 <body>
-	private String title;
-	
-	private String content;
-	
-	private String image;
-	
-	private String video;
-	
-	private Integer type;
-	
-	private String showTime;
-	
-	private Integer memberLimit;
-	
-	private String location;
-
-
 Title: ${post.title}<br/>
 Content: ${post.content}<br/>
 Type: ${post.type}<br/>

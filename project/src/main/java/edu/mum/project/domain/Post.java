@@ -24,7 +24,7 @@ public class Post {
 	private String content;
 	
 	@JsonIgnore
-	//private MultipartFile image;
+//	private MultipartFile image;
 	private String image;
 	
 	

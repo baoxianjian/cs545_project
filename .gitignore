@@ -1,1 +1,2 @@
 project/target/*
+project/src/main/resources/application.properties
