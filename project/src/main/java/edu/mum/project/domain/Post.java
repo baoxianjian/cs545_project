@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -20,8 +23,10 @@ public class Post {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@NotBlank
 	private String title;
 	
+	@NotBlank
 	private String content;
 	
 	@JsonIgnore
@@ -29,11 +34,10 @@ public class Post {
 	private MultipartFile image;
 	
 	private String imagePath;
-	
-	
 
 	private String video;
 	
+	@NotNull
 	private Integer type;
 	
 	private String showTime;
