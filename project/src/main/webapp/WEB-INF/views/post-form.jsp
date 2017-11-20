@@ -42,8 +42,8 @@
 		<form:input id="content" path="content" />
 	</div>
 	<div>
-		<label for="image">Image</label>
-		<form:input id="image" path="image" />
+		<label for="image"></label>
+		<form:input path="image" id="image" type="file" class="form:input-large" />
 	</div>
 
 	<div>
@@ -60,6 +60,12 @@
 		<label for="location">Location</label>
 		<form:input id="location" path="location" />
 	</div>
+	
+	<div>
+		<input type="submit" value="Submit" />
+	</div>
+
+	
 </form:form>
 </body>
 </html>

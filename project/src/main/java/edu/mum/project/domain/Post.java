@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 public class Post {
 	@Id
@@ -20,8 +23,12 @@ public class Post {
 	
 	private String content;
 	
+	@JsonIgnore
+	//private MultipartFile image;
 	private String image;
 	
+	
+
 	private String video;
 	
 	private Integer type;
@@ -73,16 +80,6 @@ public class Post {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-
-	public String getImage() {
-		return image;
-	}
-
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 
@@ -176,5 +173,13 @@ public class Post {
 	};
 	
 	
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 }

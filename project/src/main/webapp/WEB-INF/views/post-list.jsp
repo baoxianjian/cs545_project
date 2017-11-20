@@ -8,8 +8,29 @@
 </head>
 <body>
 
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Type</th>
+			<th>DateLine</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+
 <c:forEach var="post" items="${posts}">
-	${post.title}
+	
+	
+	<th>${post.id}</th>
+	<th>${post.title}</th>
+	<th>${post.type}</th>
+	<th>${post.dateline}</th>
+	<th><a href="detail?id=${post.id}">Details</a></th>
+	
 </c:forEach>
+</table>
+
+
 </body>
 </html>

@@ -13,6 +13,6 @@ public interface PostService {
 	
 	public Map<Integer, String> getTypeList();
 	
-	
+	public Post save(Post post);
 	
 }
