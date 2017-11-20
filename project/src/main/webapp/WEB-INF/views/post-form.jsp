@@ -7,24 +7,11 @@
 <title>Post Form</title>
 </head>
 <body>
-	private String title;
-	
-	private String content;
-	
-	private String image;
-	
-	private String video;
-	
-	private Integer type;
-	
-	private String showTime;
-	
-	private Integer memberLimit;
-	
-	private String location;
-
 
 <form:form modelAttribute="post" action="add" method="post" enctype="multipart/form-data">
+	<div>
+		<form:errors path="*"  cssStyle="color : red;"  />
+	</div>
 	<div>
 		<label for="title">Title</label>
 		<form:input id="title" path="title" />

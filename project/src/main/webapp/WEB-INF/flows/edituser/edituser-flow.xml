@@ -19,7 +19,7 @@
 	</view-state>
 	
 	<action-state id="processUser">
-		<evaluate expression="UserServiceImpl.save(user)" result="user"/>
+		<evaluate expression="userServiceImpl.save(user)" result="user"/>
 		<transition to="Success" />
 	</action-state>
 

@@ -57,7 +57,11 @@ public class PostController {
 
 		
 		if(bindingResult.hasErrors()) {
-			return "EmployeeForm";
+			Map<Integer, String> types = postService.getTypeList();
+			model.addAttribute("types",types);
+			
+			System.out.println("add post error");
+			return "post-form";
 		}
 
 		String[] suppressedFields = bindingResult.getSuppressedFields();

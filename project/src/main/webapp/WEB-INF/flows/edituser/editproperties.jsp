@@ -14,44 +14,37 @@
 <h1>Update</h1>
 <div id="global">
 <section class="container">
-<form:form modelAttribute="newuser" class="form-horizontal">
+<form:form modelAttribute="user" class="form-horizontal">
     <fieldset>
         <legend>Edit the User</legend>
   		<form:errors path="*" cssClass="text-danger" /> 
-         
+  		         
         <div class="form-group">
             <label for="email" class="control-label col-lg-2">Email: </label>
             <div class="col-lg-10">
-            	<form:input id="email" path="email" value=${user.email}/>
+            	<form:input id="email" path="email"/>
             	<form:errors path="email" cssClass="text-danger" />
             </div> 
         </div>
         <div class="form-group">
             <label for="nationality" class="control-label col-lg-2">Nationality: </label>
             <div class="col-lg-10">
-            	<form:input id="nationality" path="nationality" value=${user.nationality}/>
+            	<form:input id="nationality" path="nationality"/>
             	<form:errors path="nationality" cssClass="text-danger" />
             </div> 
         </div>
         <div class="form-group">
             <label for="birthDate" class="control-label col-lg-2">BirthDate: </label>
             <div class="col-lg-10">
-            	<form:input id="birthDate" path="birthDate" value=${user.birthDate}/>
+            	<form:input id="birthDate" path="birthDate"/>
             	<form:errors path="birthDate" cssClass="text-danger" />
             </div> 
-        </div>
-        <div class="form-group">
-            <label for="phone" class="control-label col-lg-2">Phone: </label>
-            <div class="col-lg-10">
-            	<form:input id="phone" path="phone"/>
-            	<form:errors path="phone" cssClass="text-danger" value=${user.phone}/>
-            </div>
         </div>
         <div class="form-group">
             <label for="description" class="control-label col-lg-2">Description: </label>
             <div class="col-lg-10">
             	<form:input id="description" path="description"/>
-            	<form:errors path="description" cssClass="text-danger" value=${user.description}/>
+            	<form:errors path="description" cssClass="text-danger"/>
             </div>
         </div>
         

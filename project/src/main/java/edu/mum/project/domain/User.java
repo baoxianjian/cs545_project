@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.mum.project.validation.UsernameUnique;
 
 @Entity
-public class User {
+public class User implements java.io.Serializable {
 	private static final long serialVersionUID=323;
 	
 	@Id

@@ -13,7 +13,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1 class="alert alert-danger">register success</h1>
-				<p>Your Account have been created!</p>
+				<p>Your Account have been updated!</p>
 			</div>
 		</div>
 	</section>
