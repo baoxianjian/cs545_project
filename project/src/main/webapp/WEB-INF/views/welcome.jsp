@@ -20,22 +20,21 @@
 				</security:authorize>
 
 			</div>	 
- 
-				  <div class="container">
- 				  <security:authorize access="isAnonymous()">
- 				  <!-- WHICH ONE? depends on BASIC form OR CUSTOM -->
-<%--     					<a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a>
-  --%>
+				<div class="container">
+ 					<security:authorize access="isAnonymous()">
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
-    					<a href="<spring:url value='/register' />"> Register</a>
-
-				</security:authorize>
+    				</security:authorize>
+ 					<security:authorize access="isAuthenticated()">
+    					<a href="<spring:url value='/user/showuser' />" class="btn btn-default pull-right"> ShowUser</a>
+    				</security:authorize>
 		
 					 <a href="<spring:url value='/members' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
 					</a>
 				</div>	
-		</div>	
+				<a href="<spring:url value='/user/register' />"> No account?Please press here to register</a>
+		</div>
+			
 	</section>
 	
 </body>

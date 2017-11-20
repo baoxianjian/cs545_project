@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+<title>Login</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Welcome Kimosabe!! </h1>
+				<h1>Welcome!! </h1>
 			</div>
 		</div>
 	</section>
@@ -33,9 +33,11 @@
 			    	<form action="<spring:url value="/postLogin"></spring:url>" method="post">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form:input-large" placeholder="User Name" name='username' type="text">
+			    	  		<label for="username">UserName: </label>
+			    		    	<input class="form:input-large" placeholder="User Name" name='username' type="text">
 			    		</div>
 			    		<div class="form-group">
+			    			<label for="userName">Password: </label>
 			    			<input class=" form:input-large" placeholder="Password" name='password'  type="password" value="">
 			    		</div>
 		    			<div class="form-group">

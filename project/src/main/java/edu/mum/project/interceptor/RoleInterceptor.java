@@ -16,7 +16,7 @@ public class RoleInterceptor extends HandlerInterceptorAdapter {
 		if(request.isUserInRole("ROLE_ADMIN")) {
 			userMessage+="Administrator";
 		}
-		else if(request.isUserInRole("ROLE_User")) {
+		else if(request.isUserInRole("ROLE_USER")) {
 			userMessage+="User";	
 		}
 		else {

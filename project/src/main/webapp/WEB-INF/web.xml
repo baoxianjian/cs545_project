@@ -6,9 +6,12 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
-				classpath*:**/*context.xml
-			</param-value>
+				classpath:context/DispatcherServlet-context.xml
+	</param-value>
     </init-param>
+    <multipart-config>  
+    	<max-file-size>1000000</max-file-size>
+	</multipart-config>
   </servlet>
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
@@ -17,8 +20,9 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-       		classpath*:**/*Context.xml
-  		</param-value>
+    		classpath:context/security-Context.xml
+       		classpath:context/applicationContext.xml
+  	</param-value>
   </context-param>
   <listener>
     <listener-class>

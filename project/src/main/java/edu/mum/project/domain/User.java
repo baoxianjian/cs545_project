@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -20,43 +24,50 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+import edu.mum.project.validation.UsernameUnique;
 
 @Entity
 public class User {
+	private static final long serialVersionUID=323;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@NotBlank
-	@Size(min=4,max=50)
-	private String userName;
+	@UsernameUnique
+	private String username;
 	
 	@NotEmpty
 	private String password;
+	
+	@Transient
+	private String verifyPassword;
 	
 	@Email
 	@NotEmpty
 	private String email;
 	
-	@NotEmpty
-	private String nationlity;
+	private String nationality;
 	
 	@Past
 	@DateTimeFormat(pattern="MM-dd-yyyy")
-	private Date borthDate;
+	private Date birthDate;
 	
-	@NotNull
 	private String gender;
 	
-	private String role;
+	private String role="ROLE_USER";
 	
-	@NotBlank
-	private String phone;
+	private Phone phone;
 	
 	private String description;
+		
+	private boolean enabled=true;
 	
-	private String dateline;
-	
+	@Transient
+	private MultipartFile UserImage;
+		
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Post> posts;
 	
@@ -65,12 +76,6 @@ public class User {
 	
 	public User() {};
 	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	public String getPassword() {
 		return password;
 	}
@@ -82,18 +87,6 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getNationlity() {
-		return nationlity;
-	}
-	public void setNationlity(String nationlity) {
-		this.nationlity = nationlity;
-	}
-	public Date getBorthDate() {
-		return borthDate;
-	}
-	public void setBorthDate(Date borthDate) {
-		this.borthDate = borthDate;
 	}
 	public String getGender() {
 		return gender;
@@ -107,23 +100,11 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getDateline() {
-		return dateline;
-	}
-	public void setDateline(String dateline) {
-		this.dateline = dateline;
 	}
 	public List<Post> getPosts() {
 		return posts;
@@ -137,5 +118,72 @@ public class User {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Phone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getVerifyPassword() {
+		return verifyPassword;
+	}
+
+	public void setVerifyPassword(String verifyPassword) {
+		this.verifyPassword = verifyPassword;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public MultipartFile getUserImage() {
+		return UserImage;
+	}
+
+	public void setUserImage(MultipartFile userImage) {
+		UserImage = userImage;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }
