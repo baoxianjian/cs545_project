@@ -40,7 +40,7 @@
 							<p>BirthDate - ${user.birthDate} </p>
 							<p>Gender - ${user.gender} </p>
 							<p>Role - ${user.role} </p>
-							<p>Phone - ${user.phone} </p>
+							<p>Phone - ${user.phone.area}-${user.phone.prefix}-${user.phone.number} </p>
 							<p>Description - ${user.description} </p>
 						</div>
 					</div>

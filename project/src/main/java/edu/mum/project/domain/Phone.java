@@ -10,7 +10,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
-public class Phone implements UserType {
+public class Phone implements UserType,java.io.Serializable {
+	private static final long serialVersionUID=323;
+	
 	public Phone(Integer area, Integer prefix, Integer number) {
 		super();
 		this.area = area;
@@ -46,14 +48,15 @@ public class Phone implements UserType {
 	}
 	
 	public String toOneString() {
-		return "${area}|${prefix}|${number}";
+		System.out.println(this.area.toString()+this.prefix.toString()+this.number.toString());
+		return this.area.toString()+this.prefix.toString()+this.number.toString();
 	}
 	
 	public Phone parseString(String str) {
 		if(str!=null) {
-			Integer area=Integer.parseInt(str.substring(0,2));
-			Integer prefix=Integer.parseInt(str.substring(3,5));
-			Integer number=Integer.parseInt(str.substring(6,9));
+			Integer area=Integer.parseInt(str.substring(0,3));
+			Integer prefix=Integer.parseInt(str.substring(3,6));
+			Integer number=Integer.parseInt(str.substring(6,10));
 			return new Phone(area,prefix,number);
 		}
 		return null;

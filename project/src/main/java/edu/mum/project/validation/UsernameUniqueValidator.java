@@ -22,12 +22,12 @@ public class UsernameUniqueValidator implements ConstraintValidator<UsernameUniq
 	@Override
 	public boolean isValid(String arg0, ConstraintValidatorContext arg1) {
 		// TODO Auto-generated method stub
-		User user=null;
+		char firstLetter = 0;
 		try {
-			user=userService.getUserByUsername(arg0);
+			firstLetter=arg0.charAt(0);
 		} catch(Exception e) {}
 		//user = userService.getProductById();
-		return user==null?true:false;
+		return Character.isLetter(firstLetter);
 	}
 
 }

@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = UsernameUniqueValidator.class)
 public @interface UsernameUnique {
 
-	String message() default "{edu.mum.project.validator.UserName.message}";
+	String message() default "the first of username must be letter";
 
 	Class<?>[] groups() default {};
 

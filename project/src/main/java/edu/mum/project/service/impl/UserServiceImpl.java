@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public User save(User user) {
-		System.out.println(user.getId());
 		String encodedPassword =
 				passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
