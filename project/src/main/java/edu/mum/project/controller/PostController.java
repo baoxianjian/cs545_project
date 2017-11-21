@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.project.service.PostService;
+import edu.mum.project.service.impl.UserServiceImpl;
 import edu.mum.project.domain.Post;
 import edu.mum.project.domain.User;
 import edu.mum.project.exception.ImageCannotUploadException;
@@ -29,6 +30,9 @@ import edu.mum.project.exception.ImageCannotUploadException;
 
 @Controller
 public class PostController {
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 	
 	@Autowired
 	private PostService postService;
@@ -84,15 +88,19 @@ public class PostController {
 			System.out.println(request.getContextPath());
 			
 			String fileName=getMD5(image.getOriginalFilename()+System.currentTimeMillis());
-			String path = "resources\\uploads\\" + fileName+".png";
+			String path = "resources\\uploads\\" + fileName+".jpg";
 			String webPath = request.getContextPath()+"/resource/uploads/" + fileName+".jpg";;
 			String fullPath=rootDirectory + path;
 			image.transferTo(new File(fullPath));
 			
+			User user=userServiceImpl.getUserByUsername(request.getUserPrincipal().getName());
+			post.setUser(user);
 			post.setImagePath(webPath);
 
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new ImageCannotUploadException("Image can not be uploaded. 2");//new RuntimeException("Product Image saving failed", e);
 		}
 

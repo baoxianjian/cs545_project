@@ -54,9 +54,12 @@ public class Post {
 	
 	private String location;
 	
-	@ManyToOne
-	private User joinedUsers;
+	@OneToMany
+	private List<User> joinedUsers;
 	
+	@ManyToOne
+	private User user;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
@@ -148,12 +151,12 @@ public class Post {
 	}
 
 
-	public User getJoinedUsers() {
+	public List<User> getJoinedUsers() {
 		return joinedUsers;
 	}
 
 
-	public void setJoinedUsers(User joinedUsers) {
+	public void setJoinedUsers(List<User> joinedUsers) {
 		this.joinedUsers = joinedUsers;
 	}
 
@@ -229,5 +232,14 @@ public class Post {
 	}
 
 	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	
 }

@@ -20,7 +20,7 @@
               <a class="nav-link" href="<%=request.getContextPath()%>/post/add">Adding Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="<spring:url value='/logout' />">Logout</a>
             </li>
           </ul>
         </div>

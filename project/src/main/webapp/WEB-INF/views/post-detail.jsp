@@ -35,12 +35,6 @@
 	<div class="row">
       <div class="col-md offset-3">
         <div class="well well-sm">
-
-
-			<div>
-				<form:errors path="*"  cssStyle="color : red;"  />
-			</div>
-          
        		<fieldset>
 	            <legend class="text-center">Post Detail</legend>
 	    
@@ -79,6 +73,39 @@
 	              <label class="col-md-3 control-label" for="location">Location: ${post.location}</label>
 	            </div>
 	            
+	   
+          </fieldset>
+
+        </div>
+      </div>
+	</div>
+
+
+	<div class="row">
+      <div class="col-md offset-3">
+        <div class="well well-sm">
+       		<fieldset>
+	            <legend class="text-center">Post Comments</legend>
+	    
+				<c:forEach var="comment" items="${post.comments}">
+	            	<div class="form-group">
+	              		<label class="col-md-3 control-label" for="title">${comment.content}</label>
+	            	</div>
+	    		</c:forEach>
+	    		
+	    		<form action="<spring:url value='/comment/add'/>" method="post">
+		    		<div class="form-group">
+		              <label class="col-md-3 control-label" for="content">Comment</label>
+		              <div class="col-md-9">
+		                <textarea class="form-control" id="content" path="content" placeholder="" rows="5"></textarea>
+		              </div>
+		            </div>
+		           	<div class="form-group">
+		            <div class="col-md-12">
+		               <button type="button" class="btn btn-primary btn-lg"><spring:message code="post.submit" text="default text" /></button>
+		            </div>
+	            </div>
+	            </form>
 	   
           </fieldset>
 
