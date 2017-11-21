@@ -19,7 +19,7 @@ $(document).ready(function(){
 		dataType : "json",
 		success: function(  data     ) {
 			$("#comment-list").append('<div class="form-group"><label class="col-md-3 control-label" for="title">'+data.content+'</label></div>');
-			$("#commentForm").reset();
+			$("#commentForm")[0].reset();
 //			make_visible('formInput');
 //			make_hidden('errors');
 		},

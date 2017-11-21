@@ -66,20 +66,20 @@
 	              <label class="col-md-3 control-label" for="content">Content: ${post.content}</label>
 	            </div>
 	            
-	           	<div class="form-group">
-	              <label class="col-md-3 control-label" for="showTime">Start At: ${post.showTime}</label>
-	            </div>
-	            
-	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="memberLimit">Member Count Limit: ${post.memberLimit}</label>
-	            </div>
-
-	            
-	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="location">Location: ${post.location}</label>
-	            </div>
-	            
-	   
+	            <c:if test = "${post.type==3}">
+		           	<div class="form-group">
+		              <label class="col-md-3 control-label" for="showTime">Start At: ${post.showTime}</label>
+		            </div>
+		            
+		          	<div class="form-group">
+		              <label class="col-md-3 control-label" for="memberLimit">Member Count Limit: ${post.memberLimit}</label>
+		            </div>
+	
+		            
+		          	<div class="form-group">
+		              <label class="col-md-3 control-label" for="location">Location: ${post.location}</label>
+		            </div>
+	          	</c:if>
           </fieldset>
 
         </div>
