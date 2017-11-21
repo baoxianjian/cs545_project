@@ -42,7 +42,7 @@
 			</div>
           
        		<fieldset>
-	            <legend class="text-center">Contact us</legend>
+	            <legend class="text-center">Post Detail</legend>
 	    
 	            <!-- Name input-->
 	            <div class="form-group">
