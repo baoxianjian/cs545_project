@@ -1,4 +1,6 @@
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
   <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+  <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -20,12 +22,12 @@
               <a class="nav-link" href="<%=request.getContextPath()%>/post/add">Adding Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<spring:url value='/logout' />">Logout</a>
+              <a class="nav-link" href="javascript:void(0)" onclick="$('#logoutForm').attr('action','<%=request.getContextPath()%>/dologout');$('#logoutForm')[0].submit();">Logout</a>
             </li>
           </ul>
         </div>
       </div>
-      
+      <form:form id="logoutForm"  method="post"></form:form>
       <section>
 		<div class="pull-right" style="padding-right:50px">
 			<a href="?language=en">English</a>|<a href="?language=zh_CN">Chinese</a>
