@@ -23,6 +23,11 @@
 		<property name="order" value="2" />
 	</bean>
 	
+  	<bean id="tilesViewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="-2" />
+	</bean>
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames" value="classpath:messages,classpath:errorMessages,classpath:post,classpath:post_zh_CN" />
@@ -90,4 +95,12 @@
  	</webflow-config:flow-registry>
 	
 	<webflow-config:flow-builder-services id="flowBuilderServices" validator="validator" />		
+	
+ 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+            </list>
+        </property>
+	</bean>
   </beans>

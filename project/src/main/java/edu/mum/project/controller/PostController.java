@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.project.service.PostService;
-import edu.mum.project.service.impl.UserServiceImpl;
+import edu.mum.project.service.UserService;
 import edu.mum.project.domain.Post;
 import edu.mum.project.domain.User;
 import edu.mum.project.exception.ImageCannotUploadException;
@@ -32,7 +32,7 @@ import edu.mum.project.exception.ImageCannotUploadException;
 public class PostController {
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 	
 	@Autowired
 	private PostService postService;
@@ -93,7 +93,7 @@ public class PostController {
 			String fullPath=rootDirectory + path;
 			image.transferTo(new File(fullPath));
 			
-			User user=userServiceImpl.getUserByUsername(request.getUserPrincipal().getName());
+			User user=userService.getUserByUsername(request.getUserPrincipal().getName());
 			post.setUser(user);
 			post.setImagePath(webPath);
 

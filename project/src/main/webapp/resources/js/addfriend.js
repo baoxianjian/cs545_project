@@ -10,7 +10,7 @@ function makeAjaxCall(){
 	let data=JSON.stringify(serializeObject($("#employeeForm")));
 	$.ajax({
 		type : "POST",
-		url : "http://localhost:8080/CS545Product/user/addfriend/",
+		url : "http://localhost:8080/CS545Product/friend/addfriend/",
 		data : data,
 		contentType: "application/json",
 		dataType : "json",
@@ -27,7 +27,7 @@ function makeAjaxCall(){
 			
 			if(typeof(XMLHttpRequest.responseJSON)=="undefined"){
 				$('#formInput').append("<H4 align='center'>Add Friend sueeccd!</h4>");
-				$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
+				$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>'); 
 				make_visible('formInput');
 				make_hidden('errors');
 			}

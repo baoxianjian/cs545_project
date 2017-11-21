@@ -27,13 +27,13 @@ import edu.mum.project.domain.Friend;
 import edu.mum.project.domain.User;
 import edu.mum.project.exception.DuplicatedUsernameException;
 import edu.mum.project.exception.SensitiveWordException;
-import edu.mum.project.service.impl.UserServiceImpl;
+import edu.mum.project.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 	
 	private List<String> sensitiveWords=Arrays.asList("obama","fuck");
 	
@@ -59,13 +59,13 @@ public class UserController {
 				e.printStackTrace();
 			}
 		}
-		if(userServiceImpl.getUserByUsername(user.getUsername())!=null)
+		if(userService.getUserByUsername(user.getUsername())!=null)
 			throw new DuplicatedUsernameException();
 		for(String sw:sensitiveWords) 
 			if(user.getUsername().toLowerCase().compareTo(sw)==0)
 				throw new SensitiveWordException(user.getUsername(),null);
 		
-		User replyuser=userServiceImpl.save(user);
+		User replyuser=userService.save(user);
 		ra.addFlashAttribute("user",replyuser);
 		return("redirect:/welcome");
 	}
@@ -77,24 +77,9 @@ public class UserController {
 	
 	@RequestMapping("/showuser")
 	public String showUser(HttpServletRequest request,Model model) {
-		User user=userServiceImpl.getUserByUsername(request.getUserPrincipal().getName());
+		User user=userService.getUserByUsername(request.getUserPrincipal().getName());
 		model.addAttribute("user",user);
 		return "showuser";
-	}
-	
-	@RequestMapping("/addfriend")
-	public String chooseDeleteUser() {
-		return "addfriend";
-	}
-	
-	@CrossOrigin(origins = { "*" },maxAge = 6000)
-	@RequestMapping(value="/addfriend",method=RequestMethod.POST)
-	public @ResponseBody Friend deleteUser(@Valid @RequestBody Friend friend,
-				HttpServletRequest request) {
-		System.out.println(friend.getUsername());
-		User user=userServiceImpl.getUserByUsername(request.getUserPrincipal().getName());
-		user.getFriends().add(friend);
-		return friend;
 	}
 	
 	@InitBinder

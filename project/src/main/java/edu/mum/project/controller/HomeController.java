@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.mum.project.domain.User;
-import edu.mum.project.service.impl.UserServiceImpl;
+import edu.mum.project.service.UserService;
 
 @Controller
 public class HomeController {
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
  
 	@RequestMapping({"/","/welcome"})
 	public String welcome(Model model) {

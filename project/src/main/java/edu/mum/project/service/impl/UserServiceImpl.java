@@ -3,6 +3,7 @@ package edu.mum.project.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void delete(User user) {
 		// TODO Auto-generated method stub
 		userRepository.delete(user);
