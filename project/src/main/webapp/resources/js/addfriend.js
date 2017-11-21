@@ -1,17 +1,23 @@
- 
-function makeAjaxCall(){
+$(function () {
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(header, token);
+});
+}); 
 
-	let data=JSON.stringify(serializeObject($("#userForm")));
-	alert("Hello");
+function makeAjaxCall(){
+	let data=JSON.stringify(serializeObject($("#employeeForm")));
 	$.ajax({
 		type : "POST",
-		url : "http://localhost:8080/CS545Product/user/addfriend",
+		url : "http://localhost:8080/CS545Product/user/addfriend/",
 		data : data,
 		contentType: "application/json",
 		dataType : "json",
-		success: function(data) {
+		success: function(  data     ) {
 			$('#formInput').html("");
-			$("#formInput").append( '<H3 align="center">Add Friend '+data["username"]+' Succeed! <H3>'); 
+			$('#formInput').append("<H4 align='center'>Add Friend " + data["username"]  + " sueeccd!</h4>");
+			//$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
 			make_visible('formInput');
 			make_hidden('errors');
 		},
@@ -19,7 +25,13 @@ function makeAjaxCall(){
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			$("#errors").empty();
 			
-			if (XMLHttpRequest.responseJSON.errorType == "ValidationError") {
+			if(typeof(XMLHttpRequest.responseJSON)=="undefined"){
+				$('#formInput').append("<H4 align='center'>Add Friend sueeccd!</h4>");
+				$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
+				make_visible('formInput');
+				make_hidden('errors');
+			}
+			else if (XMLHttpRequest.responseJSON.errorType == "ValidationError") {
 				let errorMsg = '<h3> Error(s)!! </h3>';
 				errorMsg += "<p>";
 				var errorList = XMLHttpRequest.responseJSON.errors;
@@ -31,6 +43,7 @@ function makeAjaxCall(){
 				$("#errors").append(errorMsg);
 				make_visible('errors');
 				make_hidden('formInput');
+				return;
 			} else {
 				alert(errorObject.responseJSON.errors(0)); // "non" Validation
 			}

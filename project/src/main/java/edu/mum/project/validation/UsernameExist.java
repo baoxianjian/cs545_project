@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = UsernameExistValidator.class)
 public @interface UsernameExist {
 
-	String message() default "user name doesn't exist";
+	String message() default "user name does not exist";
 
 	Class<?>[] groups() default {};
 

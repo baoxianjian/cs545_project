@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -86,7 +87,8 @@ public class UserController {
 		return "addfriend";
 	}
 	
-	@RequestMapping(value="/addfriend",method=RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = { "*" },maxAge = 6000)
+	@RequestMapping(value="/addfriend",method=RequestMethod.POST)
 	public @ResponseBody Friend deleteUser(@Valid @RequestBody Friend friend,
 				HttpServletRequest request) {
 		System.out.println(friend.getUsername());

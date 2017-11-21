@@ -30,7 +30,6 @@
 	</bean>
 	
 	<mvc:resources  location="/resources/"  mapping="/resource/**"/>
-
 	
 	<bean id="multipartResolver"  
     	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">  
@@ -91,5 +90,4 @@
  	</webflow-config:flow-registry>
 	
 	<webflow-config:flow-builder-services id="flowBuilderServices" validator="validator" />		
-	
   </beans>
