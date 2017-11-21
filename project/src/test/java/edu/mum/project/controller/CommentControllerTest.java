@@ -72,7 +72,7 @@ public class CommentControllerTest {
                                hasProperty("id", is(2L)),
                        		hasProperty("content", is("egg"))
                        )
-               )));;	    
+               )));	    
     } catch (AssertionError e) {
 		System.out.println("SaveProduct Error Message: " + e.getMessage());
 		throw e;
