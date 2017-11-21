@@ -1,6 +1,8 @@
 package edu.mum.project.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -20,31 +25,41 @@ public class Post {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@NotBlank
 	private String title;
 	
+	@NotBlank
 	private String content;
 	
-	@JsonIgnore
+
 	@Transient
-	private MultipartFile image;
+	private MultipartFile imageTemp;
 	
 	private String imagePath;
-	
-	
 
 	private String video;
 	
+	@NotNull
 	private Integer type;
 	
+	@Transient
+	private Map<Integer, String> types;
+	
+	@Transient
+	private String typeName;
+
 	private String showTime;
 	
 	private Integer memberLimit;
 	
 	private String location;
 	
-	@ManyToOne
-	private User joinedUsers;
+	@OneToMany
+	private List<User> joinedUsers;
 	
+	@ManyToOne
+	private User user;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
@@ -136,12 +151,12 @@ public class Post {
 	}
 
 
-	public User getJoinedUsers() {
+	public List<User> getJoinedUsers() {
 		return joinedUsers;
 	}
 
 
-	public void setJoinedUsers(User joinedUsers) {
+	public void setJoinedUsers(List<User> joinedUsers) {
 		this.joinedUsers = joinedUsers;
 	}
 
@@ -176,13 +191,13 @@ public class Post {
 	};
 	
 	
-	public MultipartFile getImage() {
-		return image;
+	public MultipartFile getImageTemp() {
+		return imageTemp;
 	}
 
 
-	public void setImage(MultipartFile image) {
-		this.image = image;
+	public void setImageTemp(MultipartFile image) {
+		this.imageTemp = image;
 	}
 	
 	public String getImagePath() {
@@ -193,5 +208,38 @@ public class Post {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	
+	public Map<Integer, String> getTypeList() {
+		if(types == null)
+		{
+			types = new HashMap<Integer, String>();
+			types.put(1, "Online Sharing");
+			types.put(3, "FaceToFace Sharing");
+		}
+		return types;
+	}
+
+	
+	public String getTypeName() {
+		
+		return getTypeList().get(this.type);
+	}
+
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	
 }

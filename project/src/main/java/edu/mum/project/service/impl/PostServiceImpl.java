@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import edu.mum.project.domain.Post;
@@ -38,6 +39,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	//PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public Post save(Post post) {
 		postRepository.save(post);
 		return null;

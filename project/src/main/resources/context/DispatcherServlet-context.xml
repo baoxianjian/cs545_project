@@ -25,7 +25,7 @@
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames" value="classpath:messages,classpath:errorMessages" />
+		<property name="basenames" value="classpath:messages,classpath:errorMessages,classpath:post,classpath:post_zh_CN" />
 		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 	

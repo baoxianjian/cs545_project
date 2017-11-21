@@ -1,6 +1,8 @@
 package edu.mum.project.controller;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.project.service.PostService;
+import edu.mum.project.service.impl.UserServiceImpl;
 import edu.mum.project.domain.Post;
 import edu.mum.project.domain.User;
 import edu.mum.project.exception.ImageCannotUploadException;
@@ -27,6 +30,9 @@ import edu.mum.project.exception.ImageCannotUploadException;
 
 @Controller
 public class PostController {
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 	
 	@Autowired
 	private PostService postService;
@@ -41,7 +47,7 @@ public class PostController {
 		return "post-list";
 	}
 	
-	@RequestMapping(value="/post/add", method=RequestMethod.GET)
+	@RequestMapping(value={"/post/add"}, method=RequestMethod.GET)
 	public String form(@ModelAttribute("post") Post post, Model model){
 		Map<Integer, String> types = postService.getTypeList();
 		
@@ -57,7 +63,11 @@ public class PostController {
 
 		
 		if(bindingResult.hasErrors()) {
-			return "EmployeeForm";
+			Map<Integer, String> types = postService.getTypeList();
+			model.addAttribute("types",types);
+			
+			System.out.println("add post error");
+			return "post-form";
 		}
 
 		String[] suppressedFields = bindingResult.getSuppressedFields();
@@ -66,7 +76,7 @@ public class PostController {
 					+ StringUtils.addStringToArray(suppressedFields, ", "));
 		}
 		
-		MultipartFile image = post.getImage();
+		MultipartFile image = post.getImageTemp();
 		
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (image == null || image.isEmpty() || image.getSize()==0) {
@@ -74,18 +84,23 @@ public class PostController {
 			throw new ImageCannotUploadException("Image can not be uploaded. 1");
 		}
 		try {
-			System.out.println(image.getName());
+			System.out.println(image.getOriginalFilename());
 			System.out.println(request.getContextPath());
 			
-			String path = "resources\\uploads\\" + post.getId()+".png";
-			String webPath = request.getContextPath()+"/resource/uploads/" + post.getId()+".png";;
+			String fileName=getMD5(image.getOriginalFilename()+System.currentTimeMillis());
+			String path = "resources\\uploads\\" + fileName+".jpg";
+			String webPath = request.getContextPath()+"/resource/uploads/" + fileName+".jpg";;
 			String fullPath=rootDirectory + path;
 			image.transferTo(new File(fullPath));
 			
+			User user=userServiceImpl.getUserByUsername(request.getUserPrincipal().getName());
+			post.setUser(user);
 			post.setImagePath(webPath);
 
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new ImageCannotUploadException("Image can not be uploaded. 2");//new RuntimeException("Product Image saving failed", e);
 		}
 
@@ -110,7 +125,18 @@ public class PostController {
 	
 	
 	
-	
+	public static String getMD5(String data) throws NoSuchAlgorithmException
+    { 
+		MessageDigest messageDigest=MessageDigest.getInstance("MD5");
+
+        messageDigest.update(data.getBytes());
+        byte[] digest=messageDigest.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(Integer.toHexString((int) (b & 0xff)));
+        }
+        return sb.toString();
+    }
 	
 	
 	

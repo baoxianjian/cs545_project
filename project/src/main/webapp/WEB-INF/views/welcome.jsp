@@ -12,7 +12,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<p><img src="<spring:url value='/resource/image/bun.jpg' />" height="50" width="50"/>  ${userMessage}</p>
+				<p><img src="<spring:url value='/resource/image/bun.jpg' />" height="50" width="100"/>  ${userMessage}</p>
 				<h1> ${greeting} </h1>
 				<p> ${tagline} </p>
 				<p> <security:authorize access="isAuthenticated()">
@@ -33,6 +33,8 @@
 					</a>
 				</div>	
 				<a href="<spring:url value='/user/register' />"> No account?Please press here to register</a>
+				OR 
+				<a href="<spring:url value='/post/list' />"> Go to posts.</a>
 		</div>
 			
 	</section>
