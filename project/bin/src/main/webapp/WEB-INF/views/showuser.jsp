@@ -17,7 +17,6 @@
 				<p>An important contributor  to our Community!!!</p>
 			</div>
   					<a href="<spring:url value="/" />" class="btn btn-primary btn-mini pull-right">Back</a>	
-  					<a href="<spring:url value="/user/addfriend" />" class="btn btn-primary btn-mini pull-right">Add Friend</a>
  				<br>
  				<spring:url value="/dologout" var="logout_url" />				
   			<form:form action="${logout_url}" class="form-horizontal" method="POST" >

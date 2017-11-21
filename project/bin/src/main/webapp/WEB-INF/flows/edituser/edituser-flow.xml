@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+							http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+<!-- Flow level variable definition SO flow scope -->
+	<var name="user" class="edu.mum.project.domain.User" />
+	
+	<action-state id="findUser">
+ 		<evaluate expression="userServiceImpl.getUserByUserId(requestParameters.userId)" result="user" />
+ 		<transition to="editproperties" />
+	</action-state>
+	
+
+	<view-state id="editproperties" view="editproperties.jsp" model="user">
+		<transition on="processUser" to="processUser" />
+		<transition on="cancelAddOtherProperties" to="cancelAddOtherProperties" validate= "false"/>
+	</view-state>
+	
+	<action-state id="processUser">
+		<evaluate expression="userServiceImpl.save(user)" result="user"/>
+		<transition to="Success" />
+	</action-state>
+
+	<view-state id="Success" model="user">
+		<transition to="endState"/>
+	</view-state>
+
+	<end-state id="endState"/>	
+
+	<end-state id="cancelAddOtherProperties" view = "cancelAddOtherProperties.jsp"/>		
+</flow>

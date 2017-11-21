@@ -74,6 +74,9 @@ public class User implements java.io.Serializable {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
+	@Transient
+	private List<Friend> friends;
+	
 	public User() {};
 	
 	public String getPassword() {
@@ -185,5 +188,13 @@ public class User implements java.io.Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Friend> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<Friend> friends) {
+		this.friends = friends;
 	}
 }

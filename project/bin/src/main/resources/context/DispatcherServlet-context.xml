@@ -53,10 +53,6 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-	<bean id="messageAccessor" class="org.springframework.context.support.MessageSourceAccessor">
-    	<constructor-arg  ref="messageSource"/>
-	</bean>
-
 	<mvc:annotation-driven conversion-service="conversionService"/>
 
 	<bean id="conversionService" class=
@@ -91,5 +87,6 @@
  	</webflow-config:flow-registry>
 	
 	<webflow-config:flow-builder-services id="flowBuilderServices" validator="validator" />		
+	
 	
   </beans>

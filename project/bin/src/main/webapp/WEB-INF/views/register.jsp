@@ -103,6 +103,5 @@
 </form:form>
 </section>
 </div>
-<a href="<spring:url value="/" />" class="btn btn-primary btn-mini pull-right">Back</a>	
 </body>
 </html>
