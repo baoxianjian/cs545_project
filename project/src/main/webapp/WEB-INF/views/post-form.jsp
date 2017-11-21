@@ -65,9 +65,9 @@
 	    
 	    
 	    	    <div class="form-group">
-	              <label class="col-md-3 control-label" for="image"><spring:message code="post.image" text="default text" /></label>
+	              <label class="col-md-3 control-label" for="imageTemp"><spring:message code="post.image" text="default text" /></label>
 	              <div class="col-md-9">
-	                <form:input path="image" id="image" type="file" class="form:input-large" />
+	                <form:input path="imageTemp" id="imageTemp" type="file" value="" class="form:input-large" />
 	              </div>
 	            </div>
 	    

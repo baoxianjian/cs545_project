@@ -72,7 +72,7 @@ public class PostController {
 					+ StringUtils.addStringToArray(suppressedFields, ", "));
 		}
 		
-		MultipartFile image = post.getImage();
+		MultipartFile image = post.getImageTemp();
 		
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (image == null || image.isEmpty() || image.getSize()==0) {
@@ -85,7 +85,7 @@ public class PostController {
 			
 			String fileName=getMD5(image.getOriginalFilename()+System.currentTimeMillis());
 			String path = "resources\\uploads\\" + fileName+".png";
-			String webPath = request.getContextPath()+"/resource/uploads/" + fileName+".png";;
+			String webPath = request.getContextPath()+"/resource/uploads/" + fileName+".jpg";;
 			String fullPath=rootDirectory + path;
 			image.transferTo(new File(fullPath));
 			

@@ -46,18 +46,12 @@
 	    
 	            <!-- Name input-->
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="title">Title</label>
-	              <div class="col-md-9">
-						${post.title}
-	              </div>
+	              <label class="col-md-3 control-label" for="title">Title: ${post.title}</label>
 	            </div>
 	    
 	            <!-- Email input-->
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="type">Type</label>
-	              <div class="col-md-9">
-					${post.typeName}
-	              </div>
+	              <label class="col-md-3 control-label" for="type">Type:${post.typeName}</label>
 	            </div>
 	    
 	    
@@ -69,32 +63,20 @@
 	            </div>
 	    
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="content">Content</label>
-	              <div class="col-md-9">
-	                <p>${post.content}</p>
-	              </div>
+	              <label class="col-md-3 control-label" for="content">Content: ${post.content}</label>
 	            </div>
 	            
 	           	<div class="form-group">
-	              <label class="col-md-3 control-label" for="showTime">Start At</label>
-	              <div class="col-md-9">
-	                ${post.showTime}
-	              </div>
+	              <label class="col-md-3 control-label" for="showTime">Start At: ${post.showTime}</label>
 	            </div>
 	            
 	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="memberLimit">Member Count Limit</label>
-	              <div class="col-md-9">
-	                ${post.memberLimit}
-	              </div>
+	              <label class="col-md-3 control-label" for="memberLimit">Member Count Limit: ${post.memberLimit}</label>
 	            </div>
 
 	            
 	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="location">Location</label>
-	              <div class="col-md-9">
-	                ${post.location}
-	              </div>
+	              <label class="col-md-3 control-label" for="location">Location: ${post.location}</label>
 	            </div>
 	            
 	   

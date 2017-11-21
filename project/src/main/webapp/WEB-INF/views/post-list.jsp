@@ -73,7 +73,7 @@
                   <h4 class="card-title">
                     <a href="detail?id=${post.id}">${post.title}</a>
                   </h4>
-                  <h5>${post.type}</h5>
+                  <h5>${post.typeName}</h5>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

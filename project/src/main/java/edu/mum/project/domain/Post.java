@@ -31,9 +31,9 @@ public class Post {
 	@NotBlank
 	private String content;
 	
-	@JsonIgnore
+
 	@Transient
-	private MultipartFile image;
+	private MultipartFile imageTemp;
 	
 	private String imagePath;
 
@@ -188,13 +188,13 @@ public class Post {
 	};
 	
 	
-	public MultipartFile getImage() {
-		return image;
+	public MultipartFile getImageTemp() {
+		return imageTemp;
 	}
 
 
-	public void setImage(MultipartFile image) {
-		this.image = image;
+	public void setImageTemp(MultipartFile image) {
+		this.imageTemp = image;
 	}
 	
 	public String getImagePath() {
