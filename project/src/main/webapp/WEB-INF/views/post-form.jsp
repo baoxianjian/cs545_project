@@ -2,59 +2,133 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
-<title>Post Form</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<form:form modelAttribute="post" action="add" method="post" enctype="multipart/form-data">
-	<div>
-		<form:errors path="*"  cssStyle="color : red;"  />
-	</div>
-	<div>
-		<label for="title">Title</label>
-		<form:input id="title" path="title" />
-	</div>
-	<div>
-		<label for="type">type</label>
-		<form:select path="type">
-		   <form:option value="0" label="--- Select ---"/>
-		   <form:options items="${types}" />
-		</form:select>
-	</div>
-	
-	<div>
-		<label for="content">Content</label>
-		<form:input id="content" path="content" />
-	</div>
-	<div>
-		<label for="image"></label>
-		<form:input path="image" id="image" type="file" class="form:input-large" />
+
+    <title><spring:message code="post_list" text="default text" /></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<%=request.getContextPath()%>/resource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<%=request.getContextPath()%>/resource/css/shop-homepage.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+  <jsp:include page="./nav.jsp" />
+  
+ <!-- Page Content -->
+    <div class="container">
+
+
+	<div class="row">
+      <div class="col-md col-md-offset-3">
+        <div class="well well-sm">
+
+        	<form:form  class="form-horizontal" modelAttribute="post" action="add" method="post" enctype="multipart/form-data">
+			<div>
+				<form:errors path="*"  cssStyle="color : red;"  />
+			</div>
+          
+       		<fieldset>
+	            <legend class="text-center"><spring:message code="post_add" text="default text" /></legend>
+	    
+	            <!-- Name input-->
+	            <div class="form-group">
+	              <label class="col-md-3 control-label" for="title"><spring:message code="post.title" text="default text" /></label>
+	              <div class="col-md-9">
+		              <form:input id="title" path="title" class="form-control"/>
+	              </div>
+	            </div>
+	    
+	            <!-- Email input-->
+	            <div class="form-group">
+	              <label class="col-md-3 control-label" for="type"><spring:message code="post.type" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:select path="type" class="form-control">
+					   <form:option value="0" label="--- Select ---"/>
+					   <form:options items="${types}" />
+					</form:select>
+	              </div>
+	            </div>
+	    
+	    
+	    	    <div class="form-group">
+	              <label class="col-md-3 control-label" for="image"><spring:message code="post.image" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:input path="image" id="image" type="file" class="form:input-large" />
+	              </div>
+	            </div>
+	    
+	            <div class="form-group">
+	              <label class="col-md-3 control-label" for="content"><spring:message code="post.content" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:textarea class="form-control" id="content" path="content" placeholder="" rows="5"></form:textarea>
+	              </div>
+	            </div>
+	            
+	           	<div class="form-group">
+	              <label class="col-md-3 control-label" for="showTime"><spring:message code="post.showTime" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:input path="showTime" id="showTime" class="form-control" />
+	              </div>
+	            </div>
+	            
+	          	<div class="form-group">
+	              <label class="col-md-3 control-label" for="memberLimit"><spring:message code="post.memberLimit" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:input path="memberLimit" id="memberLimit" class="form-control" />
+	              </div>
+	            </div>
+
+	            
+	          	<div class="form-group">
+	              <label class="col-md-3 control-label" for="location"><spring:message code="post.location" text="default text" /></label>
+	              <div class="col-md-9">
+	                <form:input path="location" id="location" class="form-control" />
+	              </div>
+	            </div>
+	            
+	    
+	            <!-- Form actions -->
+	            <div class="form-group">
+	              <div class="col-md-12 text-right">
+	                <button type="submit" class="btn btn-primary btn-lg"><spring:message code="post.submit" text="default text" /></button>
+	              </div>
+	            </div>
+          </fieldset>
+          </form:form>
+        </div>
+      </div>
 	</div>
 
-	<div>
-		<label for="showTime">StartAt</label>
-		<form:input id="showTime" path="showTime" />
-	</div>
 
-	<div>
-		<label for="memberLimit">Member Count Limit</label>
-		<form:input id="memberLimit" path="memberLimit" />
-	</div>
-	
-	<div>
-		<label for="location">Location</label>
-		<form:input id="location" path="location" />
-	</div>
-	
-	<div>
-		<input type="submit" value="Submit" />
-	</div>
+    </div>
+    <!-- /.container -->
 
-	
-</form:form>
-</body>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="<%=request.getContextPath()%>/resource/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resource/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
 </html>

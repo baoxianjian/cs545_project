@@ -1,6 +1,8 @@
 package edu.mum.project.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -40,6 +42,12 @@ public class Post {
 	@NotNull
 	private Integer type;
 	
+	@Transient
+	private Map<Integer, String> types;
+	
+	@Transient
+	private String typeName;
+
 	private String showTime;
 	
 	private Integer memberLimit;
@@ -197,5 +205,29 @@ public class Post {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	
+	public Map<Integer, String> getTypeList() {
+		if(types == null)
+		{
+			types = new HashMap<Integer, String>();
+			types.put(1, "Online Sharing");
+			types.put(3, "FaceToFace Sharing");
+		}
+		return types;
+	}
+
+	
+	public String getTypeName() {
+		
+		return getTypeList().get(this.type);
+	}
+
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	
 	
 }
