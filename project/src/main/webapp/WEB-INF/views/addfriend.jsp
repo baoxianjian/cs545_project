@@ -7,7 +7,7 @@
 	<title>Add Friend</title>
 	<meta name="_csrf" content="${_csrf.token}"/>
 	<meta name="_csrf_header" content="${_csrf.headerName}"/>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="<spring:url value='/resource/js/jquery-1.10.1.min.js'/>"></script>
 	<script type="text/javascript" src="<spring:url value="/resource/js/addfriend.js"/>"></script>
 	<link rel="stylesheet" href="<spring:url value="/resource/css/rest.css"/>">
 </head>

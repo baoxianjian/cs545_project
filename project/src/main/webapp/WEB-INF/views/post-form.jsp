@@ -21,7 +21,19 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath()%>/resource/css/shop-homepage.css" rel="stylesheet">
-
+	<script>
+		function changeShow(o)
+		{
+			if(o.value=="3")
+			{
+				$("#showF2F").show();
+			}
+			else
+			{
+				$("#showF2F").hide();
+			}
+		}
+	</script>
   </head>
 
   <body>
@@ -56,7 +68,7 @@
 	            <div class="form-group">
 	              <label class="col-md-3 control-label" for="type"><spring:message code="post.type" text="default text" /></label>
 	              <div class="col-md-9">
-	                <form:select path="type" class="form-control">
+	                <form:select path="type" class="form-control" onchange="changeShow(this)">
 					   <form:option value="0" label="--- Select ---"/>
 					   <form:options items="${types}" />
 					</form:select>
@@ -78,28 +90,29 @@
 	              </div>
 	            </div>
 	            
-	           	<div class="form-group">
-	              <label class="col-md-3 control-label" for="showTime"><spring:message code="post.showTime" text="default text" /></label>
-	              <div class="col-md-9">
-	                <form:input path="showTime" id="showTime" class="form-control" />
-	              </div>
+	            <div id="showF2F" style="display:none;">
+		           	<div class="form-group">
+		              <label class="col-md-3 control-label" for="showTime"><spring:message code="post.showTime" text="default text" /></label>
+		              <div class="col-md-9">
+		                <form:input path="showTime" id="showTime" class="form-control" />
+		              </div>
+		            </div>
+		            
+		          	<div class="form-group">
+		              <label class="col-md-3 control-label" for="memberLimit"><spring:message code="post.memberLimit" text="default text" /></label>
+		              <div class="col-md-9">
+		                <form:input path="memberLimit" id="memberLimit" class="form-control" />
+		              </div>
+		            </div>
+	
+		            
+		          	<div class="form-group">
+		              <label class="col-md-3 control-label" for="location"><spring:message code="post.location" text="default text" /></label>
+		              <div class="col-md-9">
+		                <form:input path="location" id="location" class="form-control" />
+		              </div>
+		            </div>
 	            </div>
-	            
-	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="memberLimit"><spring:message code="post.memberLimit" text="default text" /></label>
-	              <div class="col-md-9">
-	                <form:input path="memberLimit" id="memberLimit" class="form-control" />
-	              </div>
-	            </div>
-
-	            
-	          	<div class="form-group">
-	              <label class="col-md-3 control-label" for="location"><spring:message code="post.location" text="default text" /></label>
-	              <div class="col-md-9">
-	                <form:input path="location" id="location" class="form-control" />
-	              </div>
-	            </div>
-	            
 	    
 	            <!-- Form actions -->
 	            <div class="form-group">

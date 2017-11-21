@@ -1,5 +1,6 @@
 package edu.mum.project.domain;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -48,7 +53,9 @@ public class Post {
 	@Transient
 	private String typeName;
 
-	private String showTime;
+	@Future
+	@DateTimeFormat(pattern="MM-dd-yyyy")
+	private Date showTime;
 	
 	private Integer memberLimit;
 	
@@ -61,6 +68,7 @@ public class Post {
 	private User user;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	private List<Comment> comments;
 	
 	private Boolean deleted;
@@ -121,12 +129,12 @@ public class Post {
 	}
 
 
-	public String getShowTime() {
+	public Date getShowTime() {
 		return showTime;
 	}
 
 
-	public void setShowTime(String showTime) {
+	public void setShowTime(Date showTime) {
 		this.showTime = showTime;
 	}
 

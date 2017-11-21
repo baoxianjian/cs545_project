@@ -28,13 +28,12 @@
     					<a href="<spring:url value='/user/showuser' />" class="btn btn-default pull-right"> ShowUser</a>
     				</security:authorize>
 		
-					 <a href="<spring:url value='/members' />" class="btn btn-default">
+					 <a href="<spring:url value='/post/list' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Community
 					</a>
 				</div>	
 				<a href="<spring:url value='/user/register' />"> No account?Please press here to register</a>
-				OR 
-				<a href="<spring:url value='/post/list' />"> Go to posts.</a>
+
 		</div>
 			
 	</section>
