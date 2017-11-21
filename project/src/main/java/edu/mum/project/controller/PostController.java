@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -115,8 +116,8 @@ public class PostController {
 
 	
 	
-	@RequestMapping(value="/post/detail", method=RequestMethod.GET)
-	public String detail(@RequestParam("id") Long id, Model model){
+	@RequestMapping(value="/post/detail/{id}", method=RequestMethod.GET)
+	public String detail(@PathVariable("id") Long id, Model model){
 		Post post = postService.getById(id);
 		model.addAttribute("post",post);
 		return "post-detail";

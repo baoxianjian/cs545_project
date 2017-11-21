@@ -42,42 +42,42 @@
       <div class="col-md offset-3">
         <div class="well well-sm">
        		<fieldset>
-	            <legend class="text-center">Post Detail</legend>
+	            <legend class="text-center"><spring:message code="post_detail" text="default text" /></legend>
 	    
 	            <!-- Name input-->
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="title">Title: ${post.title}</label>
+	              <label class="col-md-3 control-label" for="title"><spring:message code="post.title" text="default text" />: ${post.title}</label>
 	            </div>
 	    
 	            <!-- Email input-->
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="type">Type:${post.typeName}</label>
+	              <label class="col-md-3 control-label" for="type"><spring:message code="post.type" text="default text" />:${post.typeName}</label>
 	            </div>
 	    
 	    
 	    	    <div class="form-group">
-	              <label class="col-md-3 control-label" for="image">Image</label>
+	              <label class="col-md-3 control-label" for="image"><spring:message code="post.image" text="default text" /></label>
 	              <div class="col-md-9">
 	                <img src="${post.imagePath}" width="300" alt="" />
 	              </div>
 	            </div>
 	    
 	            <div class="form-group">
-	              <label class="col-md-3 control-label" for="content">Content: ${post.content}</label>
+	              <label class="col-md-3 control-label" for="content"><spring:message code="post.content" text="default text" />: ${post.content}</label>
 	            </div>
 	            
 	            <c:if test = "${post.type==3}">
 		           	<div class="form-group">
-		              <label class="col-md-3 control-label" for="showTime">Start At: ${post.showTime}</label>
+		              <label class="col-md-3 control-label" for="showTime"><spring:message code="post.showTime" text="default text" />: ${post.showTime}</label>
 		            </div>
 		            
 		          	<div class="form-group">
-		              <label class="col-md-3 control-label" for="memberLimit">Member Count Limit: ${post.memberLimit}</label>
+		              <label class="col-md-3 control-label" for="memberLimit"><spring:message code="post.memberLimit" text="default text" />: ${post.memberLimit}</label>
 		            </div>
 	
 		            
 		          	<div class="form-group">
-		              <label class="col-md-3 control-label" for="location">Location: ${post.location}</label>
+		              <label class="col-md-3 control-label" for="location"><spring:message code="post.location" text="default text" />: ${post.location}</label>
 		            </div>
 	          	</c:if>
           </fieldset>
@@ -91,7 +91,7 @@
       <div class="col-md offset-3">
         <div class="well well-sm">
        		<fieldset>
-	            <legend class="text-center">Post Comments</legend>
+	            <legend class="text-center"><spring:message code="post_comments" text="default text" /></legend>
 	    		<div id="comment-list">
 					<c:forEach var="comment" items="${post.comments}">
 		            	<div class="form-group">
@@ -102,7 +102,7 @@
 	    		
 	    		<form action="<spring:url value='/comment/add?postid=${post.id}'/>" method="post" id="commentForm">
 		    		<div class="form-group">
-		              <label class="col-md-3 control-label" for="content">Comment</label>
+		              <label class="col-md-3 control-label" for="content"><spring:message code="post.comment" text="default text" /></label>
 		              <div class="col-md-9">
 		                <textarea class="form-control" id="content" name="content" placeholder="" rows="5"></textarea>
 		              </div>
