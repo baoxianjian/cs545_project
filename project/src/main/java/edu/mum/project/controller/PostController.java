@@ -1,6 +1,8 @@
 package edu.mum.project.controller;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +43,7 @@ public class PostController {
 		return "post-list";
 	}
 	
-	@RequestMapping(value="/post/add", method=RequestMethod.GET)
+	@RequestMapping(value={"/post/add"}, method=RequestMethod.GET)
 	public String form(@ModelAttribute("post") Post post, Model model){
 		Map<Integer, String> types = postService.getTypeList();
 		
@@ -78,11 +80,12 @@ public class PostController {
 			throw new ImageCannotUploadException("Image can not be uploaded. 1");
 		}
 		try {
-			System.out.println(image.getName());
+			System.out.println(image.getOriginalFilename());
 			System.out.println(request.getContextPath());
 			
-			String path = "resources\\uploads\\" + post.getId()+".png";
-			String webPath = request.getContextPath()+"/resource/uploads/" + post.getId()+".png";;
+			String fileName=getMD5(image.getOriginalFilename()+System.currentTimeMillis());
+			String path = "resources\\uploads\\" + fileName+".png";
+			String webPath = request.getContextPath()+"/resource/uploads/" + fileName+".png";;
 			String fullPath=rootDirectory + path;
 			image.transferTo(new File(fullPath));
 			
@@ -114,7 +117,18 @@ public class PostController {
 	
 	
 	
-	
+	public static String getMD5(String data) throws NoSuchAlgorithmException
+    { 
+		MessageDigest messageDigest=MessageDigest.getInstance("MD5");
+
+        messageDigest.update(data.getBytes());
+        byte[] digest=messageDigest.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(Integer.toHexString((int) (b & 0xff)));
+        }
+        return sb.toString();
+    }
 	
 	
 	

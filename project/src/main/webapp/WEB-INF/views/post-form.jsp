@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -19,7 +21,7 @@
 	<div>
 		<label for="type">type</label>
 		<form:select path="type">
-		   <form:option value="NONE" label="--- Select ---"/>
+		   <form:option value="0" label="--- Select ---"/>
 		   <form:options items="${types}" />
 		</form:select>
 	</div>

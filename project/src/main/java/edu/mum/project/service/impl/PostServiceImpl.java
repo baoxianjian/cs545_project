@@ -39,7 +39,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+	//PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public Post save(Post post) {
 		postRepository.save(post);
 		return null;
