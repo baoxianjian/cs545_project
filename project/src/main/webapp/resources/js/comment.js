@@ -6,51 +6,55 @@ $(document).ajaxSend(function(e, xhr, options) {
 });
 }); 
 
-function makeAjaxCall(){
+$(document).ready(function(){
+	$("#commentSbumit").click(function()
+{
 	var contextRoot = "/" + window.location.pathname.split('/')[1];
-	let data=JSON.stringify(serializeObject($("#employeeForm")));
+	let data=JSON.stringify(serializeObject($("#commentForm")));
 	$.ajax({
 		type : "POST",
-		url : contextRoot+"/user/addfriend/",
+		url : $("#commentForm").attr("action"),//contextRoot+"/comment/add",
 		data : data,
 		contentType: "application/json",
 		dataType : "json",
 		success: function(  data     ) {
-			$('#formInput').html("");
-			$('#formInput').append("<H4 align='center'>Add Friend " + data["username"]  + " sueeccd!</h4>");
-			//$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
-			make_visible('formInput');
-			make_hidden('errors');
+			$("#comment-list").append('<div class="form-group"><label class="col-md-3 control-label" for="title">'+data.content+'</label></div>');
+			$("#commentForm").reset();
+//			make_visible('formInput');
+//			make_hidden('errors');
 		},
 
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			$("#errors").empty();
 			
 			if(typeof(XMLHttpRequest.responseJSON)=="undefined"){
-				$('#formInput').append("<H4 align='center'>Add Friend sueeccd!</h4>");
-				$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
-				make_visible('formInput');
-				make_hidden('errors');
+//				
+//				$('#formInput').append("<H4 align='center'>Add Friend sueeccd!</h4>");
+//				$("#formInput").append('<h4 align="center"> <a href="#" onclick="toggle_visibility(\'formInput\');resetForm(\'employeeForm\');"><b>EXIT</b> </a> </h4>');
+//				make_visible('formInput');
+//				make_hidden('errors');
 			}
 			else if (XMLHttpRequest.responseJSON.errorType == "ValidationError") {
 				let errorMsg = '<h3> Error(s)!! </h3>';
-				errorMsg += "<p>";
+				errorMsg += "<p style='color:red'>";
 				var errorList = XMLHttpRequest.responseJSON.errors;
 
 				$.each(errorList, function(i, error) {
 					errorMsg = errorMsg +error.message + '<br>';
 				});
 				errorMsg += '</p>';
-				$("#errors").append(errorMsg);
-				make_visible('errors');
-				make_hidden('formInput');
+				$("#comment-error").html(errorMsg);
+				make_visible('comment-error');
+				//make_hidden('formInput');
 				return;
 			} else {
 				alert(errorObject.responseJSON.errors(0)); // "non" Validation
 			}
 		}					
 	});
-}
+});
+
+});
 
 toggle_visibility = function(id) {
     var element = document.getElementById(id);

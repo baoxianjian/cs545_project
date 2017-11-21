@@ -72,6 +72,7 @@ public class User implements java.io.Serializable {
 	private List<Post> posts;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	private List<Comment> comments;
 	
 	@Transient

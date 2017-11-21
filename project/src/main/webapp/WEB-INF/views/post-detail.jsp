@@ -12,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 
     <title><spring:message code="post_list" text="default text" /></title>
@@ -21,6 +24,9 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath()%>/resource/css/shop-homepage.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="<spring:url value='/resource/js/jquery-1.10.1.min.js'/>"></script>
+    <script type="text/javascript" src="<spring:url value='/resource/js/comment.js'/>"></script>
 
   </head>
 
@@ -86,24 +92,27 @@
         <div class="well well-sm">
        		<fieldset>
 	            <legend class="text-center">Post Comments</legend>
-	    
-				<c:forEach var="comment" items="${post.comments}">
-	            	<div class="form-group">
-	              		<label class="col-md-3 control-label" for="title">${comment.content}</label>
-	            	</div>
-	    		</c:forEach>
+	    		<div id="comment-list">
+					<c:forEach var="comment" items="${post.comments}">
+		            	<div class="form-group">
+		              		<label class="col-md-3 control-label" for="title">${comment.content}</label>
+		            	</div>
+		    		</c:forEach>
+	    		</div>
 	    		
-	    		<form action="<spring:url value='/comment/add'/>" method="post">
+	    		<form action="<spring:url value='/comment/add?postid=${post.id}'/>" method="post" id="commentForm">
 		    		<div class="form-group">
 		              <label class="col-md-3 control-label" for="content">Comment</label>
 		              <div class="col-md-9">
-		                <textarea class="form-control" id="content" path="content" placeholder="" rows="5"></textarea>
+		                <textarea class="form-control" id="content" name="content" placeholder="" rows="5"></textarea>
 		              </div>
 		            </div>
 		           	<div class="form-group">
+		           	<div id="comment-error"></div>
 		            <div class="col-md-12">
-		               <button type="button" class="btn btn-primary btn-lg"><spring:message code="post.submit" text="default text" /></button>
+		               <button type="button" id="commentSbumit" class="btn btn-primary btn-lg"><spring:message code="post.submit" text="default text" /></button>
 		            </div>
+		            
 	            </div>
 	            </form>
 	   

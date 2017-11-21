@@ -30,13 +30,15 @@ public class Comment {
 	@Column(name="content")
 	private String content;
 	
-	@Valid
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn
+
+	@ManyToOne
 	private Post post;
 	
-	@NotNull
-	@Column(name="deleted")
+	@ManyToOne
+	private User user;
+
+
+
 	private boolean deleted;
 	
 	public Post getPost() {
@@ -47,9 +49,7 @@ public class Comment {
 		this.post = post;
 	}
 
-	@NotEmpty
-	@Column(name="dateline")
-	@DateTimeFormat(pattern="MM-DD-YYYYHH:mm:ss")
+
 	private Date dateline;
 	
 //	private MultipartFile commentImage;
@@ -95,4 +95,13 @@ public class Comment {
 	public void setDateline(Date dateline) {
 		this.dateline = dateline;
 	};
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

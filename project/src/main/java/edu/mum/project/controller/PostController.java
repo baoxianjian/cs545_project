@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.project.service.PostService;
+import edu.mum.project.service.UserService;
 import edu.mum.project.service.impl.UserServiceImpl;
 import edu.mum.project.domain.Post;
 import edu.mum.project.domain.User;
@@ -32,7 +33,7 @@ import edu.mum.project.exception.ImageCannotUploadException;
 public class PostController {
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userServiceImpl;
 	
 	@Autowired
 	private PostService postService;
@@ -118,6 +119,9 @@ public class PostController {
 	@RequestMapping(value="/post/detail", method=RequestMethod.GET)
 	public String detail(@RequestParam("id") Long id, Model model){
 		Post post = postService.getById(id);
+		
+		System.out.println(post.getComments());
+		
 		model.addAttribute("post",post);
 		return "post-detail";
 	}
