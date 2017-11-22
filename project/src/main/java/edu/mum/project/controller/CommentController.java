@@ -94,7 +94,7 @@ public class CommentController {
 		return saveComment;
 	}
 	
-	@RequestMapping(value="/commentList",method=RequestMethod.GET)
+	@RequestMapping(value="/commentList1",method=RequestMethod.GET)
 	public String displayComments(Model model) {
 		List<Comment> comments = commentService.findAll();
 		model.addAttribute("comments", comments);

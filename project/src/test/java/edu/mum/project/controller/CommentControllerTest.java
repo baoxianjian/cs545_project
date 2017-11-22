@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import edu.mum.project.builder.CommentBuilder;
 import edu.mum.project.builder.CommentListBuilder;
 import edu.mum.project.service.CommentService;
 import edu.mum.project.service.PostService;
@@ -54,9 +55,15 @@ public class CommentControllerTest {
     @Test
     public void displayComments_getAll() throws Exception {
     	CommentListBuilder listComments=new CommentListBuilder();
+    	CommentServiceMock.save(new CommentBuilder()
+    			.withUserId(1L)
+    			.withContent("fish").build());
+    	CommentServiceMock.save(new CommentBuilder()
+    			.withUserId(2L)
+    			.withContent("egg").build());
     	when(CommentServiceMock.findAll()).thenReturn(listComments.build());
     	try {
- 			mockMvc.perform(get("/comment/commentList"))
+ 			mockMvc.perform(get("/comment/commentList1"))
  				.andExpect(status().isOk())
  				.andExpect(view().name("commentList"))
  			    .andExpect(forwardedUrl("commentList"))
@@ -67,7 +74,7 @@ public class CommentControllerTest {
                        		hasProperty("content", is("fish"))
                        )
                )))
-               .andExpect(model().attribute("products", hasItem(
+               .andExpect(model().attribute("comments", hasItem(
                        allOf(
                                hasProperty("id", is(2L)),
                        		hasProperty("content", is("egg"))
@@ -76,8 +83,5 @@ public class CommentControllerTest {
     } catch (AssertionError e) {
 		System.out.println("SaveProduct Error Message: " + e.getMessage());
 		throw e;
-	}
-        verify(CommentServiceMock, times(1)).findAll();
-        verifyNoMoreInteractions(CommentServiceMock);	
-    }
+	}}
 }
