@@ -1,0 +1,2 @@
+INSERT INTO User(username,email,password,nationality,birthDate,gender,phone,description,role,enabled) VALUES ('Jiang','jfx@163.com', '$2a$10$6eblu.WIPGQA8gZMR4eWX.KH4AO9xVC99od.3WcCmdgN3tJZ1bKdy', 'China', '2012-01-01','M','6414513634','Good!','ROLE_ADMIN',TRUE);
+         
