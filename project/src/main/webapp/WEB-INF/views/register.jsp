@@ -14,7 +14,7 @@
 <h1>Register</h1>
 <div id="global">
 <section class="container">
-<form:form modelAttribute="newuser" action="/CS545Product/user/register" 
+<form:form modelAttribute="newuser" action="" 
 	class="form-horizontal" enctype="multipart/form-data">
     <fieldset>
         <legend>Add a User</legend>

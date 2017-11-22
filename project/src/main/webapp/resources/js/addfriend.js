@@ -7,10 +7,11 @@ $(document).ajaxSend(function(e, xhr, options) {
 }); 
 
 function makeAjaxCall(){
+	var contextRoot = "/" + window.location.pathname.split('/')[1];
 	let data=JSON.stringify(serializeObject($("#employeeForm")));
 	$.ajax({
 		type : "POST",
-		url : "http://localhost:8080/CS545Product/friend/addfriend/",
+		url : contextRoot+"/friend/addfriend/",
 		data : data,
 		contentType: "application/json",
 		dataType : "json",

@@ -23,10 +23,11 @@
 		};
 
 		function addComment(){
+			var contextRoot = "/" + window.location.pathname.split('/')[1];
 			var dataToSend = JSON.Stringify(serializeObject($('#commentForm')));
 			$.ajax({
 				type:		"post",
-				url: 		"/CS545Product/addComment",
+				url: 		contextRoot+"/addComment",
 				dataType:	"json",
 				data: 		dataToSend,
 				contentType:'application/json',

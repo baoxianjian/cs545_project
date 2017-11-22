@@ -1,1 +1,27 @@
-xxx
+
+How to install and config our project?
+
+Way 1.
+You can just put CuisineSharing.war into "webapps" folder of Tomcat directly, it will use online data connection.
+
+Way 2.
+1. Open STS
+2. Click "File" -> "Open Project from File System"
+3. Open this file "/CuisineSharing/src/main/resources/application.properties" and set the Mysql Connection configurations.
+4. Build and run in Tomcat 8.5 
+
+
+
+
+The Database informations are deployed in src/main/resources/application.properties, now it¡¯s configured as blow:
+jdbc.driverClassName = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://localhost:3306/cs545project
+jdbc.username = root
+jdbc.password = root
+hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+hibernate.show_sql = true
+hibernate.format_sql = false
+use_sql_comments = true
+
+Populate SQL is deployed in src/sql, now it¡¯s configured as blow:
+INSERT INTO User(username,email,password,nationality,birthDate,gender,phone,description,role,enabled) VALUES ('Jiang','jfx@163.com', '$2a$10$6eblu.WIPGQA8gZMR4eWX.KH4AO9xVC99od.3WcCmdgN3tJZ1bKdy', 'China', '2012-01-01','M','6414513634','Good!','ROLE_ADMIN',TRUE);

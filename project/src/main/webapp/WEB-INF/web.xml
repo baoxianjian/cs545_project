@@ -9,9 +9,9 @@
 				classpath:context/DispatcherServlet-context.xml
 	</param-value>
     </init-param>
-    <multipart-config>  
-    	<max-file-size>1000000</max-file-size>
-	</multipart-config>
+    <multipart-config>
+      <max-file-size>1000000</max-file-size>
+    </multipart-config>
   </servlet>
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
@@ -47,7 +47,4 @@
     <error-code>403</error-code>
     <location>/WEB-INF/views/error-forbidden.jsp</location>
   </error-page>
-  
-
-  
 </web-app>
