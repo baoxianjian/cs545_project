@@ -95,7 +95,7 @@
 	    		<div id="comment-list">
 					<c:forEach var="comment" items="${post.comments}">
 		            	<div class="form-group">
-		              		<label class="col-md-3 control-label" for="title">${comment.content}</label>
+		              		${comment.content}
 		            	</div>
 		    		</c:forEach>
 	    		</div>
